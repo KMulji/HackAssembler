@@ -19,7 +19,6 @@ FILE* file;
 char fileName[20];
 char currentline[20];
 
-
 // opens file
 void openFile(char filename[20]){
     strcpy(fileName,filename);
@@ -128,7 +127,6 @@ char* destination(void){
         }
     return dest;
 }
-
 // computation command string
 char* computation(void){
     char* comp=(char*) malloc(20*sizeof(char));

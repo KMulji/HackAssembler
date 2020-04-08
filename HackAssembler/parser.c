@@ -25,30 +25,18 @@ void openFile(char filename[20]){
 }
 
 // goto next line
-char* advance(void){
-    file = fopen(fileName, "r");
-    char* line=(char*)malloc(sizeof(char));
-    char* temp=(char*)malloc(sizeof(char));
-    int i = 0;
-    counter++;
-    //read input
-    
-    while (fgets(line, sizeof(line), file)) {
-        i++;
-        if(i == counter )
-        {
-            //remove newline character at the end from fgets
-            long len = strlen(line);
-            if( line[len-1] == '\n' ){
-                line[len-1] = 0;
-                strcpy(temp, line);
-            }
-        }
-    }
+char* advance(char* convert){
+    char* temp=(char*) malloc(20*sizeof(char));
+    strcpy(temp, convert);
      //remove spaces from current line
     int x=0;
     int y=0;
-    long len=strlen(temp);
+    long len=strlen(convert);
+    for(x=0; x<len; x++){
+        if( temp[len-1] == '\n' ){
+            temp[len-1] = 0;
+        }
+    }
     for(x=0; x<len; x++)
     {
         if(temp[x]==' ')
@@ -61,7 +49,7 @@ char* advance(void){
         }
     }
     strcpy(currentline, temp);
-    //printf("%s\n current line is",currentline);
+    //printf("%s",currentline);
     return currentline;
 }
 

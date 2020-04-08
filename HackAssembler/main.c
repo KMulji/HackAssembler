@@ -16,25 +16,25 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    openFile("hello.asm");
-    FILE *fp = fopen("hello.asm", "r");
-    //char* temp= (char*)malloc(20*sizeof(char));
-    int ch = getc(fp);
-    int i=0;
-     while (1)
-     {
-         //printf("%s",advance());
-         advance();
-         //printf("%s",jump());
-         printf("%s\n",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
-         ch = getc(fp);
-
-         if(ch==-1){
-             break;
-         }
-         i++;
-        
-     }
+  static const char filename[] = "hello.asm";
+    FILE *file = fopen ( filename, "r" );
+    if ( file != NULL )
+    {
+       char line [ 128 ]; /* or other suitable maximum line size */
+       while ( fgets ( line, sizeof line, file ) != NULL ) /* read a line */
+       {
+           advance(line);
+           //printf("%s",advance(line));
+           //printf("%s\n",convertComp(computation()));
+           printf("%s\n",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
+          //fputs ( line, stdout ); /* write the line */
+       }
+       fclose ( file );
+    }
+    else
+    {
+       perror ( filename ); /* why didn't the file open? */
+    }
        
     return 0;
 }

@@ -16,7 +16,6 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    printf("Hung's random shit\n");
     openFile("hello.asm");
     FILE *fp = fopen("hello.asm", "r");
     //char* temp= (char*)malloc(20*sizeof(char));

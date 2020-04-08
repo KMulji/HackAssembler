@@ -17,6 +17,7 @@
 int main(int argc, const char * argv[]) {
     // insert code here...
     openFile("hello.asm");
+    printf("%s","name of file is ");
     FILE *fp = fopen("hello.asm", "r");
     //char* temp= (char*)malloc(20*sizeof(char));
     int ch = getc(fp);

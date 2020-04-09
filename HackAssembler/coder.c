@@ -32,7 +32,7 @@ char* convertJump(char* jump){
 // constructs destination table and converts destination string
 char* convertDest(char* dest){
     map newmap=createMap(300);
-    insertKey(newmap, "", "000");
+    //insertKey(newmap, "", "000");
     insertKey(newmap, "M", "001");
     insertKey(newmap, "D", "010");
     insertKey(newmap, "MD", "011");
@@ -92,6 +92,7 @@ char* convertComp(char* comp){
 char* combineC(char* comp,char* Dest, char* jump){
     char* combined=(char*) malloc(20*sizeof(char));
     sprintf(combined, "%s%s%s%s","111" ,comp, Dest, jump);
+   
     return combined;
     
 }

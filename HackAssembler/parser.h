@@ -15,7 +15,7 @@
 void hasMoreCommands(void);
 
 // goto next line
-char* advance(char* convert);
+char* convert(char* convert);
 
 // if the command is a A,C OR L Command
 int commandType(void);
@@ -32,8 +32,6 @@ char* computation(void);
 // jump command string
 char* jump(void);
 
-// open a file with a specific name. 
-void openFile(char filename[20]);
 
 void removeChar(char *str, char garbage);
 

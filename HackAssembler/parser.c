@@ -19,13 +19,8 @@ FILE* file;
 char fileName[20];
 char currentline[20];
 
-// opens file
-void openFile(char filename[20]){
-    strcpy(fileName,filename);
-}
-
 // goto next line
-char* advance(char* convert){
+char* convert(char* convert){
     char* temp=(char*) malloc(20*sizeof(char));
     strcpy(temp, convert);
      //remove spaces from current line
@@ -108,11 +103,16 @@ char* destination(void){
     int i=0;
     int j=0;
     long length= strlen(currentline);
-        while(j<length&&currentline[i]!='='){
+        while(j<length){
+            if(currentline[j]=='='){
+                break;
+            }
             dest[j]=currentline[i];
             i++;
             j++;
+            
         }
+    
     return dest;
 }
 // computation command string
@@ -123,20 +123,20 @@ char* computation(void){
     long length= strlen(currentline);
     
     while (i<length) {
-        if(currentline[i]=='='){
+        //if(currentline[i]=='='){
             int k=0;
-            for (j=i; j<length; j++) {
+            //for (j=i; j<length; j++) {
                 comp[k]=currentline[j];
                 if(currentline[j]==';'){
                     break;
                 }
                 k++;
-            }
+            //}
             break;
             }
         
         i++;
-    }
+    //}
     removeChar(comp, '=');
     removeChar(comp, ';');
     return comp;

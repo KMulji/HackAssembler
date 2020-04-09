@@ -26,9 +26,10 @@ int main(int argc, const char * argv[]) {
        {
            
            convert(line);
+           printf("%s\n", convertBinary(symbol()));
            //printf("%s",convert(line));
            //printf("%s\n",convertComp(computation()));
-           printf("%s\n",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
+           // printf("%s\n",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
            //printf("%s\n",convertDest(destination()));
            //printf("%s",convertComp(computation()));
           //fputs ( line, stdout ); /* write the line */

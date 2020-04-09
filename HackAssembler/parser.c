@@ -11,7 +11,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 
 char line[1000];
 int counter=0;
@@ -91,8 +90,8 @@ char* symbol(void){
                 k++;
             }
         }
-        
     }
+    printf("%s\n", sym);
     removeChar(sym, '(');
     return sym;
 }

@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-
+char* convertBinary(char* a);
 char* convertJump(char* jump);
 char* convertDest(char* Dest);
 char* convertComp(char* comp);

@@ -15,26 +15,26 @@
 char* convertBinary(char* a) {
     // Convert char* a -> int
     int dec = atoi(a);
-    printf("%s %d\n", "Mario", dec);
+    //printf("%s %d\n", "Mario", dec);
     
     // Convert int -> String
-    int temp[15], i;
-    char binary[15];
+    int temp[16], i;
+    char binary[16];
     
-    for (i = 14; dec > 0; i--) {
+    for (i = 15; dec > 0; i--) {
         temp[i] = dec%2;
         dec = dec/2;
     }
-    printf("i is %d\n", i);
+    //printf("i is %d\n", i);
     for (; i >= 0; i--) {
         temp[i] = 0;
     }
     
     int index = 0;
-    for (int i = 0; i < 15; i++) {
+    for (int i = 0; i < 16; i++) {
         index += sprintf (&binary[index], "%d", temp[i]);
     }
-    printf("%s %s\n", "Peach", binary);
+    //printf("%s %s\n", "Peach", binary);
     char* binary_ptr = binary;
     return binary_ptr;
 }
@@ -119,7 +119,6 @@ char* convertComp(char* comp){
 char* combineC(char* comp,char* Dest, char* jump){
     char* combined=(char*) malloc(20*sizeof(char));
     sprintf(combined, "%s%s%s%s","111" ,comp, Dest, jump);
-   
     return combined;
     
 }

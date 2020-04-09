@@ -91,8 +91,8 @@ char* symbol(void){
             }
         }
     }
-    printf("%s\n", sym);
-    removeChar(sym, '(');
+    //removeChar(sym, '@');
+    //printf("%s\n",sym);
     return sym;
 }
 
@@ -145,8 +145,6 @@ char* computation(void){
             comp[k]=currentline[j];
             k++;
         }
-            
-        
     }
     else{
         int k;

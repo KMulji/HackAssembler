@@ -32,7 +32,7 @@ char* convertJump(char* jump){
 // constructs destination table and converts destination string
 char* convertDest(char* dest){
     map newmap=createMap(300);
-    //insertKey(newmap, "", "000");
+    insertKey(newmap, "", "000");
     insertKey(newmap, "M", "001");
     insertKey(newmap, "D", "010");
     insertKey(newmap, "MD", "011");

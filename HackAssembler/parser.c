@@ -101,17 +101,23 @@ char* symbol(void){
 char* destination(void){
     char* dest=(char*) malloc(20*sizeof(char));
     int i=0;
-    int j=0;
+    int c=0;
     long length= strlen(currentline);
-        while(j<length){
-            if(currentline[j]=='='){
-                break;
-            }
-            dest[j]=currentline[i];
-            i++;
-            j++;
-            
+    while (i<length) {
+        if(currentline[i]=='='){
+            c=1;
+            i--;
+            break;
         }
+        i++;
+    }
+    if(c){
+        while (i>=0) {
+            
+            dest[i]=currentline[i];
+        i--;
+    }
+    }
     
     return dest;
 }
@@ -120,23 +126,40 @@ char* computation(void){
     char* comp=(char*) malloc(20*sizeof(char));
     int i=0;
     int j=0;
+    int c=0;
     long length= strlen(currentline);
-    
     while (i<length) {
-        //if(currentline[i]=='='){
-            int k=0;
-            //for (j=i; j<length; j++) {
-                comp[k]=currentline[j];
-                if(currentline[j]==';'){
-                    break;
-                }
-                k++;
-            //}
+        if(currentline[i]=='='){
+            j=i;
+            c=1;
             break;
-            }
-        
+        }
         i++;
-    //}
+    }
+    if(c){
+        int k=0;
+        for (; j<length; j++) {
+            
+            if(currentline[j]==';'){
+                break;
+            }
+            comp[k]=currentline[j];
+            k++;
+        }
+            
+        
+    }
+    else{
+        int k;
+        for (k=0; k<length; k++) {
+            
+            if(currentline[k]==';'){
+                break;
+            }
+            comp[k]=currentline[k];
+            k++;
+        }
+    }
     removeChar(comp, '=');
     removeChar(comp, ';');
     return comp;

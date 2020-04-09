@@ -29,7 +29,8 @@ int main(int argc, const char * argv[]) {
            //printf("%s",convert(line));
            //printf("%s\n",convertComp(computation()));
            printf("%s\n",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
-           //printf("%d",commandType());
+           //printf("%s\n",convertDest(destination()));
+           //printf("%s",convertComp(computation()));
           //fputs ( line, stdout ); /* write the line */
            
        }

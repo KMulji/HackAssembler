@@ -1,18 +1,21 @@
 @256
 D=A
 @0
-M=D
-@133
-0;JMP
-@15
-M=D
-@0
-AM=M-1
+M=D // Row 4
+(LOOP)
+@R17
 D=M
-A=A-1
-D=M-D
-M=0
-@19
-D;JNE
-@0
-A=M-1
+@LOOP
+0;JMP
+
+@16
+D=D+M
+@15
+D=D+M
+@14
+D=M
+D=D+M
+D=D+M // Row 16
+(EXIT)
+@EXIT
+0;JMP

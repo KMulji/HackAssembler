@@ -72,6 +72,7 @@ int commandType(void){
 char* symbol(void){
     // a command or () label. remove @ and ()
     char* sym=(char*) malloc(20*sizeof(char));
+    // A-instruction @
     if(currentline[0]=='@'){
         int k=0;
         int i=0;
@@ -85,7 +86,7 @@ char* symbol(void){
         for (i=0; i<strlen(currentline); i++) {
             if(currentline[i]==')'){
                 break;
-            }else if(currentline[i]!=')') {
+            }else {
                 sym[k]=currentline[k];
                 k++;
             }
@@ -95,6 +96,7 @@ char* symbol(void){
     //printf("%s\n",sym);
     return sym;
 }
+
 
 // destination command string
 char* destination(void){

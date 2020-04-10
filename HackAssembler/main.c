@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
     // insert code here...
   static const char filename[] = "hello.asm";
     FILE *file = fopen ( filename, "r" );
-    
+    FILE *file2= fopen("hello.hack", "w+");
     if ( file != NULL )
     {
        char line [ 128 ]; /* or other suitable maximum line size */
@@ -27,10 +27,12 @@ int main(int argc, const char * argv[]) {
            
            convert(line);
            if(commandType()==1){
-               printf("%s\n", convertBinary(symbol()));
+               //fputs(convertBinary(symbol()), file2);
+               //printf("%s\n",convertBinary(symbol()));
                
            }else if(commandType()==4){
-                printf("%s\n",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
+               fputs(combineC(convertComp(computation()),convertDest(destination()), convertJump(jump())), file2);
+                //printf("%s",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
            }
            
        }

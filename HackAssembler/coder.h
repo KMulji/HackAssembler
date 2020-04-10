@@ -16,5 +16,6 @@ char* convertJump(char* jump);
 char* convertDest(char* Dest);
 char* convertComp(char* comp);
 char* combineC(char* comp,char* Dest, char* jump);
+char* combineA(char* binaryConverted);
 
 #endif /* coder_h */

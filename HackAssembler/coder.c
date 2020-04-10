@@ -35,6 +35,7 @@ char* convertBinary(char* a) {
         index += sprintf (&binary[index], "%d", temp[i]);
     }
     //printf("%s %s\n", "Peach", binary);
+    //sprintf(binary, "%s","\n");
     char* binary_ptr = binary;
     return binary_ptr;
 }
@@ -118,7 +119,6 @@ char* convertComp(char* comp){
 }
 char* combineC(char* comp,char* Dest, char* jump){
     char* combined=(char*) malloc(20*sizeof(char));
-    sprintf(combined, "%s%s%s%s","111" ,comp, Dest, jump);
+    sprintf(combined, "%s%s%s%s%s","111" ,comp, Dest, jump,"\n");
     return combined;
-    
 }

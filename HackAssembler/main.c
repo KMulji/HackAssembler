@@ -27,7 +27,7 @@ int main(int argc, const char * argv[]) {
            
            convert(line);
            if(commandType()==1){
-               //fputs(convertBinary(symbol()), file2);
+               fputs(convertBinary(symbol()), file2);
                //printf("%s\n",convertBinary(symbol()));
                
            }else if(commandType()==4){

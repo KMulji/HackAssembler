@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EC9C2082440C4F2006D949A /* SymbolTable.c in Sources */ = {isa = PBXBuildFile; fileRef = 0EC9C2072440C4F1006D949A /* SymbolTable.c */; };
 		E53FB5CC243B5224000989A5 /* map.c in Sources */ = {isa = PBXBuildFile; fileRef = E53FB5CB243B5224000989A5 /* map.c */; };
 		E598C24C24360FAA008FCB2B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = E598C24B24360FAA008FCB2B /* main.c */; };
 		E598C2572436110A008FCB2B /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = E598C2562436110A008FCB2B /* parser.c */; };
@@ -26,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0EC9C2062440C4F1006D949A /* SymbolTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SymbolTable.h; sourceTree = "<group>"; };
+		0EC9C2072440C4F1006D949A /* SymbolTable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SymbolTable.c; sourceTree = "<group>"; };
 		E53FB5CA243B5224000989A5 /* map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = map.h; sourceTree = "<group>"; };
 		E53FB5CB243B5224000989A5 /* map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = map.c; sourceTree = "<group>"; };
 		E598C24824360FAA008FCB2B /* HackAssembler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HackAssembler; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,12 +69,14 @@
 		E598C24A24360FAA008FCB2B /* HackAssembler */ = {
 			isa = PBXGroup;
 			children = (
+				0EC9C2062440C4F1006D949A /* SymbolTable.h */,
+				0EC9C2072440C4F1006D949A /* SymbolTable.c */,
 				E598C24B24360FAA008FCB2B /* main.c */,
-				E53FB5CB243B5224000989A5 /* map.c */,
 				E53FB5CA243B5224000989A5 /* map.h */,
-				E598C2552436110A008FCB2B /* parser.h */,
 				E5D231BB243D9CA70093F530 /* coder.h */,
+				E53FB5CB243B5224000989A5 /* map.c */,
 				E5D231BC243D9CA70093F530 /* coder.c */,
+				E598C2552436110A008FCB2B /* parser.h */,
 				E598C2562436110A008FCB2B /* parser.c */,
 			);
 			path = HackAssembler;
@@ -134,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC9C2082440C4F2006D949A /* SymbolTable.c in Sources */,
 				E53FB5CC243B5224000989A5 /* map.c in Sources */,
 				E5D231BD243D9CA70093F530 /* coder.c in Sources */,
 				E598C2572436110A008FCB2B /* parser.c in Sources */,

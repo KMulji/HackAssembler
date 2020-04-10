@@ -17,9 +17,8 @@ char* convertBinary(char* a) {
     int dec = atoi(a);
     //printf("%s %d\n", "Mario", dec);
     
-    // Convert int -> String
     int temp[16], i;
-    char binary[16];
+    char* binary= (char*) malloc(sizeof(char) * 17);
     
     for (i = 15; dec > 0; i--) {
         temp[i] = dec%2;
@@ -30,14 +29,15 @@ char* convertBinary(char* a) {
         temp[i] = 0;
     }
     
+    // Convert int -> String
     int index = 0;
     for (int i = 0; i < 16; i++) {
         index += sprintf (&binary[index], "%d", temp[i]);
     }
     //printf("%s %s\n", "Peach", binary);
-    //sprintf(binary, "%s","\n");
-    char* binary_ptr = binary;
-    return binary_ptr;
+    strcat(binary, "\n");
+    // char* binary_ptr = binary;
+    return binary;
 }
 
 // constructs jmp table and converts jump command

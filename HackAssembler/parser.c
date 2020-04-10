@@ -74,9 +74,9 @@ char* symbol(void){
     char* sym=(char*) malloc(20*sizeof(char));
     if(currentline[0]=='@'){
         int k=0;
-        int i=0;
-        for (i=0; i<strlen(currentline); i++) {
-            sym[k]=currentline[i+1];
+        int i;
+        for (i=1; i<strlen(currentline); i++) {
+            sym[k]=currentline[i];
             k++;
         }
     }else if(currentline[0]=='('){

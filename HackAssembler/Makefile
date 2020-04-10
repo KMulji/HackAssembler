@@ -4,11 +4,14 @@
 #is "schemer," which just takes a line of input and
 #breaks it up into tokens.
 
-assembler: main.o  parser.o coder.o map.o 
-	gcc -o assembler main.o parser.o coder.o map.o
+assembler: main.o SymbolTable.o parser.o coder.o map.o 
+	gcc -o assembler main.o SymbolTable.o parser.o coder.o map.o
 
 main.o: main.c
 	gcc -c main.c
+
+SymbolTable.o: SymbolTable.c
+	gcc -c SymbolTable.c
 
 parser.o: parser.c
 	gcc -c parser.c

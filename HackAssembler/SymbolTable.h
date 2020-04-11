@@ -19,6 +19,6 @@ void addEntry(char* symbol, int address);
 // Does the symbol table contain the given symbol?
 int contains(char* symbol);
 //Returns the address associated with the symbol.
-int GetAddress(char* symbol);
+char* GetAddress(char* symbol);
 
 #endif /* SymbolTable_h */

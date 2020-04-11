@@ -53,27 +53,28 @@ void initST(void) {
 }
 
 void addEntry(char* symbol, int address) {
+    int length = snprintf( NULL, 0, "%d", address);
+    char* str = malloc( length + 1 );
+    snprintf( str, length + 1, "%d", address );
     
-    
+    insertKey(SymbolTable, symbol, str);
+    printf("addEntry test str: %s\n", str);
+    free(str);
 }
 
 // Label Symbols
-void addLabel(char* symbol) {
-    insertKey(SymbolTable, symbol, "16");
-}
+
 
 // Variable Symbols
 // Start from @16 and mapped consecutive memory after that
-void addVariable(char* symbol) {
-    
-}
+
 
 int contains(char* symbol) {
-    return 0;
+    return containsKey(SymbolTable, symbol);
 }
 
-int GetAddress(char* symbol) {
-    return 0;
+char* GetAddress(char* symbol) {
+    return lookupKey(SymbolTable, symbol);
 }
 
 /**

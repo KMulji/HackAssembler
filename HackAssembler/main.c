@@ -44,6 +44,10 @@ int main(int argc, const char * argv[]) {
 //        perror ( filename ); /* why didn't the file open? */
 //    }
     initST();
+    addEntry("Hungry", 69);
+    printf("Has Key Hunger? No %d\n", contains("Hunger"));
+    printf("Has Key Hungry? Yes %d\n", contains("Hungry"));
+    printf("Binary of %s is: %s\n", GetAddress("Hungry"), convertBinary(GetAddress("Hungry")));
     
     return 0;
 }

@@ -92,7 +92,7 @@ char* symbol(void){
             }
         }
     }
-    //removeChar(sym, '@');
+    removeChar(sym, '(');
     //printf("%s\n",sym);
     return sym;
 }

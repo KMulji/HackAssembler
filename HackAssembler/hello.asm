@@ -1,21 +1,7 @@
-@256
-D=A
-@0
-M=D // Row 4
-(LOOP)
-@R17
+@R0
+@i
 D=M
-@LOOP
-0;JMP
-
-@16
-D=D+M
-@15
-D=D+M
-@14
 D=M
-D=D+M
-D=D+M // Row 16
 (EXIT)
 @EXIT
-0;JMP
+D=M

@@ -21,4 +21,5 @@ int contains(char* symbol);
 //Returns the address associated with the symbol.
 char* GetAddress(char* symbol);
 
+int isNumber(char* input);
 #endif /* SymbolTable_h */

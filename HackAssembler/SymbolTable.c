@@ -11,6 +11,7 @@
 #include <string.h>
 #include "SymbolTable.h"
 #include "map.h"
+#include <ctype.h>
 
 map SymbolTable;
 
@@ -58,7 +59,7 @@ void addEntry(char* symbol, int address) {
     snprintf( str, length + 1, "%d", address );
     
     insertKey(SymbolTable, symbol, str);
-    printf("addEntry test str: %s\n", str);
+    //printf("addEntry test str: %s %s\n",symbol, str);
     free(str);
 }
 
@@ -76,7 +77,18 @@ int contains(char* symbol) {
 char* GetAddress(char* symbol) {
     return lookupKey(SymbolTable, symbol);
 }
-
+int isNumber(char* input){
+    
+    long length= strlen(input);
+    int i=0;
+    for (i=0;i<length; i++)
+        if (!isdigit(input[i]))
+        {
+            return 0;
+        }
+    return 1;
+    
+}
 /**
  [V] ]Initialize: Predefined symbols
  - Initialize ST with predefined symbols and their pre-allocated RAM addresses
@@ -87,6 +99,7 @@ char* GetAddress(char* symbol) {
  
  [  ] ]Second Pass: Lookup + Var Symbols
  1. If meet @xxx, lookup xxx and RETURN the associated RAM/ROM address -> binary
+ @50 @LOOP
  2. if not found in ST, it's a Variable Symbol => Add a new entry (xxx, n)
  where n starts at 16 and is the next available space.
  */

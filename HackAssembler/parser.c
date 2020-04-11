@@ -20,6 +20,8 @@ char currentline[20];
 
 // goto next line
 char* convert(char* convert){
+     removeChar(convert, ' ');
+      removeChar(convert, '\t');
     char* temp=(char*) malloc(20*sizeof(char));
     strcpy(temp, convert);
      //remove spaces from current line

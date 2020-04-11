@@ -17,9 +17,9 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-  static const char filename[] = "hello.asm";
+  static const char filename[] = "Rect.asm";
     FILE *file = fopen ( filename, "r" );
-    FILE *file2= fopen("hello.hack", "w+");
+    FILE *file2= fopen("Rect.hack", "w+");
     int ROMcounter=0;
     int RAMcounter=16;
     initST();
@@ -61,24 +61,26 @@ int main(int argc, const char * argv[]) {
                     char* temp=symbol();
                     
                     if(isNumber(temp)){
-                      printf("%s\n",convertBinary(temp));
-                    
-                      //fputs(convertBinary(temp), file2);
+                      //printf("%s\n",convertBinary(temp));
+    
+                      fputs(convertBinary(temp), file2);
                     }
                     else if(contains(temp)>0){
-                        printf("%s",convertBinary(GetAddress(temp)));
+                        //printf("%s",convertBinary(GetAddress(temp)));
+                        fputs(convertBinary(GetAddress(temp)),file2);
                     }else{
                         addEntry(temp, RAMcounter);
                         RAMcounter++;
-                        printf("%s",convertBinary(GetAddress(temp)));
+                        //printf("%s",convertBinary(GetAddress(temp)));
+                        fputs(convertBinary(GetAddress(temp)),file2);
                     }
                     
                     //printf("%s\n",convertBinary(symbol()));
 
                 }else if(commandType()==4){
                     
-                    //fputs(combineC(convertComp(computation()),convertDest(destination()), convertJump(jump())), file2);
-                   printf("%s",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
+                    fputs(combineC(convertComp(computation()),convertDest(destination()), convertJump(jump())), file2);
+                   //printf("%s",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
             
             }
             }
@@ -89,10 +91,6 @@ int main(int argc, const char * argv[]) {
             perror ( filename ); /* why didn't the file open? */
         }
     
-    //addEntry("Hungry", 69);
-    //printf("Has Key Hunger? No %d\n", contains("Hunger"));
-    //printf("Has Key Hungry? Yes %d\n", contains("Hungry"));
-    //printf("Binary of %s is: %s\n", GetAddress("Hungry"), convertBinary(GetAddress("Hungry")));
     
     return 0;
 }

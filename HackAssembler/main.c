@@ -16,31 +16,30 @@
 
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-  static const char filename[] = "Rect.asm";
-    FILE *file = fopen ( filename, "r" );
-    FILE *file2= fopen("Rect.hack", "w+");
+    
+//    printf("%s %s",argv[1], argv[2]);
+  static const char filename[] = "hello.asm";
+    FILE *file = fopen ( argv[1], "r" );
+    FILE *file2= fopen(argv[2], "w+");
     int ROMcounter=0;
     int RAMcounter=16;
-    initST();
+    initST(); // initialize ST
+    
+    // first pass
     if ( file != NULL )
     {
         char line [ 128 ]; /* or other suitable maximum line size */
         while ( fgets ( line, sizeof line, file ) != NULL ) /* read a line */
         {
             convert(line);
-            if(commandType()==1){
+            int ctype = commandType();
+            if(ctype==1){
                 ROMcounter++;
-               
-
-            }else if(commandType()==4){
+            }else if(ctype==4){
                 ROMcounter++;
-                
-            }else if(commandType()==0){
-                
+            }else if(ctype==0){
                 addEntry(symbol(), ROMcounter);
             }
-
         }
         fclose ( file );
     }
@@ -48,25 +47,25 @@ int main(int argc, const char * argv[]) {
     {
         perror ( filename ); /* why didn't the file open? */
     }
+    
     // second pass
-    file = fopen ( filename, "r" );
+    file = fopen ( argv[1], "r" );
     if ( file != NULL )
         {
             char line [ 128 ]; /* or other suitable maximum line size */
             while ( fgets ( line, sizeof line, file ) != NULL ) /* read a line */
             {
-
                 convert(line);
-                if(commandType()==1){
+                int ctype = commandType();
+                if(ctype==1){
                     char* temp=symbol();
                     
                     if(isNumber(temp)){
-                      //printf("%s\n",convertBinary(temp));
-    
+//                      printf("%s\n",convertBinary(temp));
                       fputs(convertBinary(temp), file2);
                     }
                     else if(contains(temp)>0){
-                        //printf("%s",convertBinary(GetAddress(temp)));
+//                        printf("%s",convertBinary(GetAddress(temp)));
                         fputs(convertBinary(GetAddress(temp)),file2);
                     }else{
                         addEntry(temp, RAMcounter);
@@ -77,12 +76,11 @@ int main(int argc, const char * argv[]) {
                     
                     //printf("%s\n",convertBinary(symbol()));
 
-                }else if(commandType()==4){
-                    
+                }else if(ctype==4){
                     fputs(combineC(convertComp(computation()),convertDest(destination()), convertJump(jump())), file2);
                    //printf("%s",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
             
-            }
+                }
             }
             fclose ( file );
         }

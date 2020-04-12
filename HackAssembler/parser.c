@@ -21,29 +21,40 @@ char currentline[20];
 // goto next line
 char* convert(char* convert){
      removeChar(convert, ' ');
-      removeChar(convert, '\t');
+     removeChar(convert, '\t');
+    removeChar(convert, '\n');
+    // printf("convert input: %s\n", convert);
     char* temp=(char*) malloc(20*sizeof(char));
-    strcpy(temp, convert);
+//    strcpy(temp, convert);
      //remove spaces from current line
     int x=0;
-    int y=0;
+    
     long len=strlen(convert);
     for(x=0; x<len; x++){
-        if( temp[len-1] == '\n' ){
-            temp[len-1] = 0;
+        
+        if (convert[x] == '/') {
+//            strncpy(currentline, convert, x);
+            //printf("strncpy: %s\n", currentline);
+            break;
         }
+        temp[x] = convert[x];
     }
-    for(x=0; x<len; x++)
-    {
-        if(temp[x]==' ')
-        {
-            for(y=x; y<len; y++)
-            {
-                temp[y]=temp[y+1];
-            }
-        len--;
-        }
-    }
+    
+//    if( temp[len-1] == '\n' ){
+//        temp[len-1] = 0;
+//    }
+//    for(x=0; x<len; x++)
+//    {
+//        if(temp[x]==' ')
+//        {
+//            for(y=x; y<len; y++)
+//            {
+//                temp[y]=temp[y+1];
+//            }
+//        len--;
+//        }
+//    }
+    
     strcpy(currentline, temp);
     //printf("%s",currentline);
     return currentline;
@@ -51,6 +62,7 @@ char* convert(char* convert){
 
 // if the command is a A,C OR L Command or a comment to skip
 int commandType(void){
+    //printf("%s", currentline);
     if(currentline[0]=='('){
        // L COMMAND
         return 0;
@@ -64,6 +76,7 @@ int commandType(void){
         return 2;
     }
     else if (currentline[0]=='\0'){
+        // printf("We got \\0 here.\n with currentline %s", currentline);
         return 3;
     }
     // c command

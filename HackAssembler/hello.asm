@@ -1,7 +1,10 @@
-@R0
-@i
-D=M
-D=M
-(EXIT)
-@EXIT
-D=M
+// hello
+@256 // hello
+D=A//yourmum
+@3  // test
+@3
+@3
+@3
+D=D+A
+@0
+M=D

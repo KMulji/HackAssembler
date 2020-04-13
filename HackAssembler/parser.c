@@ -33,13 +33,14 @@ char* convert(char* convert){
     for(x=0; x<len; x++){
         
         if (convert[x] == '/') {
+            temp[x]='\0';
 //            strncpy(currentline, convert, x);
             //printf("strncpy: %s\n", currentline);
             break;
         }
         temp[x] = convert[x];
     }
-    
+    temp[x-1]='\0';
 //    if( temp[len-1] == '\n' ){
 //        temp[len-1] = 0;
 //    }
@@ -54,7 +55,7 @@ char* convert(char* convert){
 //        len--;
 //        }
 //    }
-    
+    //sprintf(convert, "%s","\\");
     strcpy(currentline, temp);
     //printf("%s",currentline);
     return currentline;

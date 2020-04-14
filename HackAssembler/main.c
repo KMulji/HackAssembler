@@ -23,8 +23,10 @@ int main(int argc, const char * argv[]) {
     FILE *file2= fopen(argv[2], "w+");
     int ROMcounter=0;
     int RAMcounter=16;
-    initST(); // initialize ST
+    int EntryCount = 0;
     
+    initCoder(); // initialize coder map
+    initST(); // initialize ST
     // first pass
     if ( file != NULL )
     {
@@ -39,15 +41,19 @@ int main(int argc, const char * argv[]) {
                 ROMcounter++;
             }else if(ctype==0){
                 addEntry(symbol(), ROMcounter);
+                EntryCount++;
             }
         }
         fclose ( file );
     }
     else
     {
-        perror ( filename ); /* why didn't the file open? */
+        perror ( argv[1] ); /* why didn't the file open? */
     }
     
+    printf("Entry count: %d\n", EntryCount);
+    printf("\n\n----Moving to second pass----\n\n");
+    EntryCount = 0;
     // second pass
     file = fopen ( argv[1], "r" );
     if ( file != NULL )
@@ -64,11 +70,12 @@ int main(int argc, const char * argv[]) {
 //                      printf("%s\n",convertBinary(temp));
                       fputs(convertBinary(temp), file2);
                     }
-                    else if(contains(temp)>0){
+                    else if(contains(temp)>=0){
 //                        printf("%s",convertBinary(GetAddress(temp)));
                         fputs(convertBinary(GetAddress(temp)),file2);
                     }else{
                         addEntry(temp, RAMcounter);
+                        EntryCount++;
                         RAMcounter++;
                         //printf("%s",convertBinary(GetAddress(temp)));
                         fputs(convertBinary(GetAddress(temp)),file2);
@@ -86,8 +93,12 @@ int main(int argc, const char * argv[]) {
         }
         else
         {
-            perror ( filename ); /* why didn't the file open? */
+            perror ( argv[1] ); /* why didn't the file open? */
         }
+    printf("Entry count: %d\n", EntryCount);
+    // freeParser();   //free currentline[20]
+    freeCoder();    // freeMap in Coder
+    freeST();       //freeMap Symbol Table
     
     
     return 0;

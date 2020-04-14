@@ -27,7 +27,7 @@ map SymbolTable;
  KBD        : 24576
  */
 void initST(void) {
-    SymbolTable = createMap(300);
+    SymbolTable = createMap(1000);
     insertKey(SymbolTable, "SP", "0");
     insertKey(SymbolTable, "LCL", "1");
     insertKey(SymbolTable, "ARG", "2");
@@ -77,8 +77,9 @@ int contains(char* symbol) {
 char* GetAddress(char* symbol) {
     return lookupKey(SymbolTable, symbol);
 }
+
+
 int isNumber(char* input){
-    
     long length= strlen(input);
     int i=0;
     for (i=0;i<length; i++)
@@ -87,7 +88,6 @@ int isNumber(char* input){
             return 0;
         }
     return 1;
-    
 }
 /**
  [V] ]Initialize: Predefined symbols
@@ -107,3 +107,6 @@ int isNumber(char* input){
 // Add '//' comments
 // Add "Ignore white space/next-line"
 // Prevent Memory Leak
+void freeST(){
+    freeMap(SymbolTable);
+}

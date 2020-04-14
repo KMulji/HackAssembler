@@ -22,4 +22,5 @@ int contains(char* symbol);
 char* GetAddress(char* symbol);
 
 int isNumber(char* input);
+void freeST(void);
 #endif /* SymbolTable_h */

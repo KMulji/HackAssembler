@@ -12,11 +12,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char line[1000];
-int counter=0;
-FILE* file;
-char fileName[20];
-char currentline[20];
+
+char currentline[40];
 
 // goto next line
 char* convert(char* convert){
@@ -24,23 +21,26 @@ char* convert(char* convert){
      removeChar(convert, '\t');
     removeChar(convert, '\n');
     // printf("convert input: %s\n", convert);
-    char* temp=(char*) malloc(20*sizeof(char));
-//    strcpy(temp, convert);
+    char* temp=(char*) malloc(40*sizeof(char));
      //remove spaces from current line
     int x=0;
     
     long len=strlen(convert);
-    for(x=0; x<len; x++){
+    int hasComment = 0;
+    for(x=0; x<len; x++){ // copy until reaches '//'
         
         if (convert[x] == '/') {
             temp[x]='\0';
 //            strncpy(currentline, convert, x);
             //printf("strncpy: %s\n", currentline);
+            hasComment = 1;
             break;
         }
         temp[x] = convert[x];
     }
-    temp[x-1]='\0';
+    if(!hasComment)
+        temp[x-1]='\0';
+    
 //    if( temp[len-1] == '\n' ){
 //        temp[len-1] = 0;
 //    }
@@ -57,7 +57,8 @@ char* convert(char* convert){
 //    }
     //sprintf(convert, "%s","\\");
     strcpy(currentline, temp);
-    //printf("%s",currentline);
+    // free(temp);
+    // printf("%s\n",currentline);
     return currentline;
 }
 
@@ -87,7 +88,7 @@ int commandType(void){
 //L command string
 char* symbol(void){
     // a command or () label. remove @ and ()
-    char* sym=(char*) malloc(20*sizeof(char));
+    char* sym=(char*) malloc(40*sizeof(char));
     // A-instruction @
     if(currentline[0]=='@'){
         int k=0;
@@ -133,7 +134,7 @@ char* destination(void){
             
             dest[i]=currentline[i];
         i--;
-    }
+        }
     }
     
     return dest;
@@ -177,6 +178,7 @@ char* computation(void){
     }
     removeChar(comp, '=');
     removeChar(comp, ';');
+    printf("comp is %s\n", comp);
     return comp;
     
 }
@@ -208,5 +210,10 @@ char* jump(void){
         if (*dst != garbage) dst++;
     }
     *dst = '\0';
+}
+
+void freeParser() {
+    free(currentline);
+    printf("Free(currentline) Successful\n");
 }
 

@@ -10,12 +10,13 @@
 #define coder_h
 
 #include <stdio.h>
-
+void initCoder(void);
 char* convertBinary(char* a);
 char* convertJump(char* jump);
 char* convertDest(char* Dest);
 char* convertComp(char* comp);
 char* combineC(char* comp,char* Dest, char* jump);
 char* combineA(char* binaryConverted);
+void freeCoder(void);
 
 #endif /* coder_h */

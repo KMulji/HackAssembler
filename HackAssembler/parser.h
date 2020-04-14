@@ -35,4 +35,6 @@ char* jump(void);
 
 void removeChar(char *str, char garbage);
 
+void freeParser(void);
+
 #endif /* parser_h */

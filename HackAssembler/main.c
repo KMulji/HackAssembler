@@ -18,12 +18,11 @@
 int main(int argc, const char * argv[]) {
     
 //    printf("%s %s",argv[1], argv[2]);
-  static const char filename[] = "hello.asm";
+ // static const char filename[] = "hello.asm";
     FILE *file = fopen ( argv[1], "r" );
     FILE *file2= fopen(argv[2], "w+");
     int ROMcounter=0;
     int RAMcounter=16;
-    int EntryCount = 0;
     
     initCoder(); // initialize coder map
     initST(); // initialize ST
@@ -33,16 +32,19 @@ int main(int argc, const char * argv[]) {
         char line [ 128 ]; /* or other suitable maximum line size */
         while ( fgets ( line, sizeof line, file ) != NULL ) /* read a line */
         {
-            convert(line);
+            convert(line); //initialize currentline char*
             int ctype = commandType();
             if(ctype==1){
                 ROMcounter++;
             }else if(ctype==4){
                 ROMcounter++;
             }else if(ctype==0){
-                addEntry(symbol(), ROMcounter);
-                EntryCount++;
+                char* temp_symbol = symbol();
+                addEntry(temp_symbol, ROMcounter);
+                //free(temp_symbol);
             }
+            freeParser(); // free currentline char*
+            
         }
         fclose ( file );
     }
@@ -51,9 +53,9 @@ int main(int argc, const char * argv[]) {
         perror ( argv[1] ); /* why didn't the file open? */
     }
     
-    printf("Entry count: %d\n", EntryCount);
-    printf("\n\n----Moving to second pass----\n\n");
-    EntryCount = 0;
+//    printf("Entry count: %d\n", EntryCount);
+//    printf("\n\n----Moving to second pass----\n\n");
+    
     // second pass
     file = fopen ( argv[1], "r" );
     if ( file != NULL )
@@ -68,26 +70,36 @@ int main(int argc, const char * argv[]) {
                     
                     if(isNumber(temp)){
 //                      printf("%s\n",convertBinary(temp));
-                      fputs(convertBinary(temp), file2);
+                        char *cvbi = convertBinary(temp);
+                        fputs(cvbi, file2);
+                        free(cvbi);
                     }
                     else if(contains(temp)>=0){
 //                        printf("%s",convertBinary(GetAddress(temp)));
-                        fputs(convertBinary(GetAddress(temp)),file2);
+                        char *cvbi = convertBinary(GetAddress(temp));
+                        fputs(cvbi,file2);
+                        free(cvbi);
                     }else{
                         addEntry(temp, RAMcounter);
-                        EntryCount++;
                         RAMcounter++;
                         //printf("%s",convertBinary(GetAddress(temp)));
-                        fputs(convertBinary(GetAddress(temp)),file2);
+                        char *cvbi = convertBinary(GetAddress(temp));
+                        fputs(cvbi,file2);
+                        free(cvbi);
                     }
+                    free(temp);
                     
                     //printf("%s\n",convertBinary(symbol()));
 
                 }else if(ctype==4){
                     fputs(combineC(convertComp(computation()),convertDest(destination()), convertJump(jump())), file2);
                    //printf("%s",combineC(convertComp(computation()), convertDest(destination()), convertJump(jump())));
+//                    free(c_temp);
+//                    free(d_temp);
+//                    free(j_temp);
             
                 }
+                freeParser();
             }
             fclose ( file );
         }
@@ -95,8 +107,7 @@ int main(int argc, const char * argv[]) {
         {
             perror ( argv[1] ); /* why didn't the file open? */
         }
-    printf("Entry count: %d\n", EntryCount);
-    // freeParser();   //free currentline[20]
+    
     freeCoder();    // freeMap in Coder
     freeST();       //freeMap Symbol Table
     

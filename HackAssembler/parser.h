@@ -15,7 +15,7 @@
 void hasMoreCommands(void);
 
 // goto next line
-char* convert(char* convert);
+void convert(char* convert);
 
 // if the command is a A,C OR L Command
 int commandType(void);

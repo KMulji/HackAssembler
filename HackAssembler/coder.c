@@ -98,29 +98,23 @@ char* convertBinary(char* a) {
 
 // constructs jmp table and converts jump command
 char* convertJump(char* jump){
-     char* binaryJump=(char*) malloc(20*sizeof(char));
+//     char* binaryJump=(char*) malloc(20*sizeof(char));
     
-    binaryJump=lookupKey(jumpmap, jump);
-    
-    return binaryJump;
+    return lookupKey(jumpmap, jump);
 }
 
 // constructs destination table and converts destination string
 char* convertDest(char* dest){
-    char* binaryDest=(char*) malloc(20*sizeof(char));
+//    char* binaryDest=(char*) malloc(20*sizeof(char));
     
-    binaryDest=lookupKey(destmap, dest);
     
-    return binaryDest;
+    return lookupKey(destmap, dest);;
 }
 
 //constructs comp table and converts comp string
 char* convertComp(char* comp){
-    char* binaryComp=(char*) malloc(20*sizeof(char));
-    
-    binaryComp=lookupKey(compmap, comp);
 
-    return binaryComp;
+    return lookupKey(compmap, comp);
 }
 
 char* combineC(char* comp,char* Dest, char* jump){

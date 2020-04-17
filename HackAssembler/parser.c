@@ -13,15 +13,18 @@
 #include <stdio.h>
 
 
-char currentline[40];
+//char currentline[40];
+char* currentline;
 
 // goto next line
-char* convert(char* convert){
+void convert(char* convert){
      removeChar(convert, ' ');
      removeChar(convert, '\t');
     removeChar(convert, '\n');
     // printf("convert input: %s\n", convert);
-    char* temp=(char*) malloc(40*sizeof(char));
+//    char* temp=(char*) malloc(40*sizeof(char));
+    currentline=(char*) malloc(40*sizeof(char));
+    
      //remove spaces from current line
     int x=0;
     
@@ -30,36 +33,20 @@ char* convert(char* convert){
     for(x=0; x<len; x++){ // copy until reaches '//'
         
         if (convert[x] == '/') {
-            temp[x]='\0';
-//            strncpy(currentline, convert, x);
-            //printf("strncpy: %s\n", currentline);
+            currentline[x]='\0';
             hasComment = 1;
             break;
         }
-        temp[x] = convert[x];
+        currentline[x] = convert[x];
     }
     if(!hasComment)
-        temp[x-1]='\0';
+        currentline[x-1]='\0';
     
-//    if( temp[len-1] == '\n' ){
-//        temp[len-1] = 0;
-//    }
-//    for(x=0; x<len; x++)
-//    {
-//        if(temp[x]==' ')
-//        {
-//            for(y=x; y<len; y++)
-//            {
-//                temp[y]=temp[y+1];
-//            }
-//        len--;
-//        }
-//    }
-    //sprintf(convert, "%s","\\");
-    strcpy(currentline, temp);
-    // free(temp);
+//    strcpy(currentline, temp);
+    
+//    free(temp); doesn't work since strcpy to currentline
     // printf("%s\n",currentline);
-    return currentline;
+//    return currentline;
 }
 
 // if the command is a A,C OR L Command or a comment to skip
@@ -178,7 +165,7 @@ char* computation(void){
     }
     removeChar(comp, '=');
     removeChar(comp, ';');
-    printf("comp is %s\n", comp);
+//    printf("comp is %s\n", comp);
     return comp;
     
 }
@@ -214,6 +201,6 @@ char* jump(void){
 
 void freeParser() {
     free(currentline);
-    printf("Free(currentline) Successful\n");
+    // printf("Free(currentline) Successful\n");
 }
 
